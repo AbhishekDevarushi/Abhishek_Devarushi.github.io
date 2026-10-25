@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b12">
+
+  <!-- EDIT: Update your name, title and description here -->
+  <title>Abhishek Devarushi | Electronics & Embedded Systems Engineer</title>
+  <meta name="description" content="Portfolio of Abhishek Devarushi — electronics engineering, embedded systems, EV electronics, PCB design, AI and research.">
+
+  <style>
+    /* =====================================================
+       DESIGN SETTINGS — change these colours if you want
+       ===================================================== */
+    :root {
+      --bg: #080b12;
+      --panel: #101622;
+      --panel-light: #141d2c;
+      --text: #edf3ff;
+      --muted: #9baac0;
+      --accent: #5de4ff;
+      --accent-2: #9c8cff;
+      --border: rgba(174, 204, 255, 0.13);
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 85px; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 75% 0%, rgba(59, 86, 170, .17), transparent 40%),
+        radial-gradient(ellipse at 0% 35%, rgba(35, 180, 210, .08), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { font: inherit; }
+    ::selection { background: var(--accent); color: #061018; }
+
+    .container { width: min(var(--max-width), 90%); margin: auto; }
+    .section { padding: 92px 0; }
+    .eyebrow {
+      color: var(--accent);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      letter-spacing: -.045em;
+      margin: 10px 0 16px;
+    }
+
+    .section-intro { color: var(--muted); max-width: 660px; }
+    .gradient {
+      background: linear-gradient(100deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Navigation */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 11, 18, .88);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(18px);
+    }
+
+    nav {
+      min-height: 70px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand { font-weight: 900; letter-spacing: -.04em; font-size: 1.05rem; }
+    .brand span { color: var(--accent); }
+
+    .nav-links { display: flex; align-items: center; gap: 23px; }
+    .nav-links a { color: var(--muted); font-size: .86rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+
+    .menu-toggle {
+      display: none;
+      color: var(--text);
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 7px 11px;
+      cursor: pointer;
+    }
+
+    /* Buttons and reusable elements */
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      font-weight: 750;
+      font-size: .9rem;
+      transition: transform .2s, border-color .2s, background .2s;
+    }
+
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn-primary { background: var(--accent); color: #071019; border-color: var(--accent); }
+    .btn-secondary { background: rgba(255,255,255,.025); }
+    .button-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: #c5d4e9;
+      background: rgba(255,255,255,.025);
+      font-size: .75rem;
+      margin: 4px 4px 0 0;
+    }
+
+    /* Hero */
+    .hero { min-height: 590px; display: flex; align-items: center; padding: 92px 0 75px; }
+    .hero-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: 55px; align-items: center; }
+    .availability { display: inline-flex; align-items: center; gap: 9px; color: #c4d4e8; font-size: .83rem; }
+    .dot { height: 8px; width: 8px; background: #68edb1; border-radius: 50%; box-shadow: 0 0 12px #68edb1; }
+    .hero h1 { font-size: clamp(2.6rem, 6.4vw, 5.2rem); letter-spacing: -.07em; line-height: 1.04; margin: 22px 0; }
+    .hero h1 .line { display: block; }
+    .hero-copy { max-width: 650px; color: var(--muted); font-size: 1.04rem; }
+    .hero-copy strong { color: var(--text); font-weight: 650; }
+
+    .hero-visual {
+      min-height: 300px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 22px;
+      background: linear-gradient(145deg, rgba(24,37,57,.95), rgba(10,15,25,.94));
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 90px rgba(0,0,0,.22);
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      border: 1px solid rgba(93,228,255,.22);
+      right: -55px;
+      top: -55px;
+      box-shadow: 0 0 0 24px rgba(93,228,255,.025), 0 0 0 50px rgba(93,228,255,.02);
+    }
+
+    .terminal-bar { display: flex; gap: 6px; margin-bottom: 28px; }
+    .terminal-bar span { width: 8px; height: 8px; border-radius: 50%; background: #5de4ff; opacity: .75; }
+    .code-line { font-family: Consolas, monospace; color: #a9bdd5; font-size: .82rem; margin: 12px 0; }
+    .code-line .cyan { color: var(--accent); }
+    .code-line .purple { color: #b6aaff; }
+    .visual-label { margin-top: 28px; color: var(--muted); font-size: .78rem; }
+    .visual-title { font-size: 1.3rem; font-weight: 800; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 36px;
+    }
+
+    .metric { padding: 14px; border: 1px solid var(--border); border-radius: 10px; background: rgba(255,255,255,.02); }
+    .metric strong { display: block; font-size: 1rem; }
+    .metric span { color: var(--muted); font-size: .74rem; }
+
+    /* Cards and layouts */
+    .section-heading { margin-bottom: 34px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+    .card {
+      background: linear-gradient(145deg, rgba(18,26,40,.96), rgba(12,17,27,.96));
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 24px;
+      transition: transform .22s, border-color .22s;
+      min-width: 0;
+    }
+
+    .card:hover { transform: translateY(-4px); border-color: rgba(93,228,255,.45); }
+    .card h3 { font-size: 1.12rem; line-height: 1.4; margin: 13px 0 9px; }
+    .card p { color: var(--muted); font-size: .91rem; margin-bottom: 14px; }
+    .card-symbol { font-size: 1.5rem; }
+    .card-link { color: var(--accent); font-weight: 700; font-size: .86rem; }
+    .card-link:hover { text-decoration: underline; }
+    .meta { color: var(--accent); font-size: .76rem; letter-spacing: .04em; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 50px; align-items: start; }
+    .about-panel { border-left: 2px solid var(--accent); padding: 5px 0 5px 23px; }
+    .about-panel p { color: var(--muted); }
+
+    /* Timeline */
+    .timeline { display: grid; gap: 18px; }
+    .timeline-item { display: grid; grid-template-columns: 155px 1fr; gap: 25px; padding: 23px; border: 1px solid var(--border); border-radius: 13px; background: rgba(255,255,255,.018); }
+    .timeline-date { color: var(--accent); font-size: .82rem; font-weight: 750; }
+    .timeline-item h3 { margin: 0 0 4px; font-size: 1.08rem; }
+    .timeline-item .sub { color: var(--muted); font-size: .84rem; margin-bottom: 12px; }
+    .timeline-item ul { padding-left: 19px; margin: 0; color: var(--muted); font-size: .9rem; }
+    .timeline-item li + li { margin-top: 6px; }
+
+    /* Skills */
+    .skill-group h3 { font-size: .95rem; margin-bottom: 10px; }
+    .skill-group { margin-bottom: 20px; }
+
+    /* Contact */
+    .contact-panel {
+      padding: clamp(25px, 5vw, 55px);
+      border: 1px solid rgba(93,228,255,.25);
+      border-radius: 20px;
+      background: radial-gradient(ellipse at 90% 10%, rgba(93,228,255,.09), transparent 45%), var(--panel);
+    }
+    .contact-panel p { max-width: 620px; color: var(--muted); }
+    .contact-details { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 24px; color: var(--muted); font-size: .9rem; }
+    .contact-details a:hover { color: var(--accent); }
+
+    footer { border-top: 1px solid var(--border); padding: 25px 0; color: var(--muted); font-size: .8rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s, transform .6s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Mobile layout */
+    @media (max-width: 800px) {
+      .hero-grid, .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero { padding-top: 65px; min-height: auto; }
+      .hero-visual { min-height: 270px; }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { gap: 13px; }
+      .nav-links a { font-size: .78rem; }
+    }
+
+    @media (max-width: 560px) {
+      .section { padding: 65px 0; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 69px;
+        left: 0;
+        right: 0;
+        padding: 18px 5%;
+        background: #0c111b;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: .92rem; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+      .metrics { gap: 7px; }
+      .metric { padding: 10px; }
+      .metric strong { font-size: .88rem; }
+      .metric span { font-size: .68rem; }
+      .hero h1 { font-size: clamp(2.6rem, 13vw, 4rem); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- =====================================================
+       EASY UPDATE GUIDE
+       1. Change your text directly in the sections below.
+       2. To add a project, copy an entire project <article>.
+       3. To add a job, copy an entire timeline-item <article>.
+       4. To publish edits: GitHub > index.html > Edit > Commit.
+       ===================================================== -->
+
+  <div class="nav-wrap">
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#home">AD<span>.</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰ Menu</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#research">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <!-- HERO: EDIT YOUR INTRODUCTION HERE -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="availability"><span class="dot"></span> Electronics · Embedded Systems · R&D</div>
+          <p class="eyebrow" style="margin-top:25px">Engineer / Researcher / Builder</p>
+          <h1>
+            <span class="line">Abhishek</span>
+            <span class="line gradient">Devarushi.</span>
+          </h1>
+          <p class="hero-copy">
+            I work at the intersection of <strong>electronics, embedded systems,
+            EV technology and intelligent engineering</strong> — turning technical
+            ideas into practical hardware, experiments and research.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="#projects">Explore my work ↘</a>
+            <a class="btn btn-secondary" href="#contact">Let's connect ↗</a>
+          </div>
+          <div class="metrics">
+            <div class="metric"><strong>Embedded</strong><span>Hardware & firmware</span></div>
+            <div class="metric"><strong>Research</strong><span>Modelling & AI</span></div>
+            <div class="metric"><strong>Deep tech</strong><span>Ideas to prototypes</span></div>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="Decorative engineering terminal">
+          <div class="terminal-bar"><span></span><span></span><span></span></div>
+          <div class="visual-title">ENGINEERING_MODE<span class="gradient">.ON</span></div>
+          <p class="code-line"><span class="purple">const</span> focus = [</p>
+          <p class="code-line">&nbsp;&nbsp;<span class="cyan">"Embedded Systems"</span>,</p>
+          <p class="code-line">&nbsp;&nbsp;<span class="cyan">"EV Electronics"</span>,</p>
+          <p class="code-line">&nbsp;&nbsp;<span class="cyan">"PCB & Hardware"</span>,</p>
+          <p class="code-line">&nbsp;&nbsp;<span class="cyan">"Applied Research"</span></p>
+          <p class="code-line">];</p>
+          <p class="code-line"><span class="purple">while</span> (curious) { build(); test(); learn(); }</p>
+          <div class="visual-label">DESIGN · DEBUG · VALIDATE · IMPROVE</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container about-grid reveal">
+        <div>
+          <p class="eyebrow">01 / About me</p>
+          <h2>Curiosity is good.<br><span class="gradient">Building is better.</span></h2>
+        </div>
+        <div class="about-panel">
+          <p>
+            I'm an Electronics and Communication Engineering graduate from
+            Jain College of Engineering, Belagavi, with an interest in building
+            reliable electronic systems and exploring how research can solve
+            real engineering problems.
+          </p>
+          <p>
+            My experience spans EV electronic control units and charger hardware,
+            PCB design and debugging, embedded platforms, MATLAB/Simulink
+            modelling, computer vision and data-driven fault mitigation.
+          </p>
+          <p>
+            I'm interested in opportunities where I can contribute to
+            <strong>electronics R&D, embedded product development, applied research
+            and ambitious deep-tech projects.</strong>
+          </p>
+          <div>
+            <span class="tag">B.E. ECE · 8.6/10 GPA</span>
+            <span class="tag">Jain College of Engineering</span>
+            <span class="tag">Belagavi, Karnataka, India</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS: COPY ONE ARTICLE TO ADD ANOTHER PROJECT -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">02 / Selected work</p>
+          <h2>Engineering in <span class="gradient">action.</span></h2>
+          <p class="section-intro">A selection of hardware, embedded systems and intelligent engineering work. More implementation details and project links can be added as they become available.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <div class="card-symbol">⚡</div>
+            <div class="meta">EV ELECTRONICS · PCB DESIGN</div>
+            <h3>EV Electronic Control Unit</h3>
+            <p>PCB layout work in KiCad, schematic verification, power-rail debugging and copper-pour routing for electric-vehicle electronics.</p>
+            <span class="tag">KiCad</span><span class="tag">PCB</span><span class="tag">Power rails</span>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-symbol">🔌</div>
+            <div class="meta">EV CHARGING · COMMUNICATIONS</div>
+            <h3>Flash Charger Carrier Board</h3>
+            <p>Engineering work on charger carrier boards, including dual-CAN integration and STM32/ESP32 transceiver configuration for charging communication.</p>
+            <span class="tag">CAN</span><span class="tag">STM32</span><span class="tag">ESP32</span>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-symbol">🚆</div>
+            <div class="meta">SAFETY · EMBEDDED SYSTEMS</div>
+            <h3>Railway Obstacle Detection</h3>
+            <p>A laser-based obstacle-detection project integrating sensor data to trigger real-time hazard alerts for railway-track safety.</p>
+            <span class="tag">Sensors</span><span class="tag">Detection</span><span class="tag">Alerts</span>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-symbol">🫁</div>
+            <div class="meta">DRDO · MODELLING</div>
+            <h3>Aircraft Life-Support Modelling</h3>
+            <p>MATLAB/Simulink modelling of pilot life-support equipment, respiration dynamics, airflow and pressure regulation under flight conditions.</p>
+            <span class="tag">MATLAB</span><span class="tag">Simulink</span><span class="tag">PID</span>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-symbol">🌙</div>
+            <div class="meta">COMPUTER VISION · EDGE AI</div>
+            <h3>Real-Time Low-Light Enhancement</h3>
+            <p>Retinex-based image enhancement implemented with Raspberry Pi 4, combining image processing with embedded-system deployment.</p>
+            <span class="tag">Raspberry Pi 4</span><span class="tag">Retinex</span><span class="tag">Vision</span>
+            <p style="margin-top:15px"><a class="card-link" href="https://ieeexplore.ieee.org/document/11412438" target="_blank" rel="noopener noreferrer">View IEEE publication ↗</a></p>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-symbol">🛰️</div>
+            <div class="meta">AI · SPACECRAFT SENSORS</div>
+            <h3>Radiation Fault Mitigation</h3>
+            <p>Accepted research work exploring data-driven neural networks for intelligent radiation fault mitigation in spacecraft sensors.</p>
+            <span class="tag">Neural networks</span><span class="tag">Fault mitigation</span><span class="tag">Research</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="section" id="research">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">03 / Research & publications</p>
+          <h2>Questions worth <span class="gradient">investigating.</span></h2>
+          <p class="section-intro">Research interests include applied electronics, embedded intelligence, computer vision and engineering simulation.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="card reveal">
+            <div class="meta">PUBLISHED · EMBEDDED VISION</div>
+            <h3>Real-Time Low-Light Image Enhancement Using Retinex-Based Algorithms on Raspberry Pi 4</h3>
+            <p>Research on low-light image enhancement, image processing and embedded implementation.</p>
+            <a class="card-link" href="https://ieeexplore.ieee.org/document/11412438" target="_blank" rel="noopener noreferrer">Read on IEEE Xplore ↗</a>
+          </article>
+
+          <article class="card reveal">
+            <div class="meta">ACCEPTED · SPACE SYSTEMS</div>
+            <h3>Intelligent Radiation Fault Mitigation in Spacecraft Sensors Using Data-Driven Neural Networks</h3>
+            <p>Accepted research work on data-driven approaches to spacecraft sensor fault mitigation.</p>
+            <span class="tag">Scopus-indexed work — as stated in CV</span>
+          </article>
+
+          <article class="card reveal">
+            <div class="meta">PUBLISHED · ENVIRONMENTAL ENGINEERING</div>
+            <h3>Removal of Heavy Metals from Industrial Effluent Using Electrogravimetric Technique</h3>
+            <p>Research into an electrochemical technique for industrial wastewater treatment and heavy-metal removal.</p>
+            <span class="tag">Electrochemistry</span><span class="tag">Water treatment</span>
+            <!-- Add the exact article URL here when available -->
+          </article>
+
+          <article class="card reveal">
+            <div class="meta">RESEARCH INTERESTS</div>
+            <h3>From simulation to real-world systems</h3>
+            <p>Exploring embedded hardware, intelligent monitoring, sensor systems, predictive maintenance and hardware-aware AI.</p>
+            <span class="tag">Embedded intelligence</span><span class="tag">Simulation</span><span class="tag">R&D</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">04 / Experience & leadership</p>
+          <h2>Where I've <span class="gradient">contributed.</span></h2>
+        </div>
+
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <div class="timeline-date">Oct 2026 – Present</div>
+            <div>
+              <h3>Electronics Engineer Trainee</h3>
+              <div class="sub">Rivot Motors India Pvt. Ltd. · Belagavi, Karnataka</div>
+              <ul>
+                <li>Designed KiCad PCB layouts for EV ECUs, including schematic verification, power-rail debugging and copper-pour routing.</li>
+                <li>Worked on flash charger carrier boards with dual-CAN bus integration and STM32/ESP32 transceiver configuration.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-date">Aug 2025 – Feb 2026</div>
+            <div>
+              <h3>Research Intern</h3>
+              <div class="sub">Defence Research and Development Organisation (DRDO) · Bengaluru, Karnataka</div>
+              <ul>
+                <li>Modelled pilot life-support equipment and respiration dynamics in MATLAB/Simulink.</li>
+                <li>Simulated airflow and pressure regulation profiles to study life-support performance under flight conditions.</li>
+                <li>Applied mathematical modelling and PID autotuning to evaluate simulated physiological responses.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="timeline-item reveal">
+            <div class="timeline-date">Jan 2025 – Jan 2026</div>
+            <div>
+              <h3>Project Intern & Student Chairperson</h3>
+              <div class="sub">IEEE Bangalore Section / JCE IEEE Student Branch · Karnataka</div>
+              <ul>
+                <li>Developed a long-range laser-based railway obstacle-detection project.</li>
+                <li>Served as Student Chair, coordinating technical workshops, student activities and liaison with the IEEE Bangalore Section.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS: ADD OR REMOVE TAGS TO KEEP THIS CURRENT -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">05 / Technical toolkit</p>
+          <h2>Tools I <span class="gradient">work with.</span></h2>
+          <p class="section-intro">Technologies and skills listed in my current engineering profile. This list will grow as I build and validate more projects.</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card skill-group reveal">
+            <h3>Embedded & firmware</h3>
+            <span class="tag">ESP32</span><span class="tag">STM32</span><span class="tag">C programming</span><span class="tag">CAN communication</span>
+          </div>
+          <div class="card skill-group reveal">
+            <h3>Electronics & hardware</h3>
+            <span class="tag">Circuit design</span><span class="tag">PCB layout</span><span class="tag">EV ECUs</span><span class="tag">Charger control units</span><span class="tag">EMI/EMC testing</span><span class="tag">BOM cost optimisation</span>
+          </div>
+          <div class="card skill-group reveal">
+            <h3>Design & simulation</h3>
+            <span class="tag">KiCad</span><span class="tag">Proteus</span><span class="tag">Wokwi</span><span class="tag">MATLAB</span><span class="tag">Simulink</span>
+          </div>
+          <div class="card skill-group reveal">
+            <h3>Research & intelligent systems</h3>
+            <span class="tag">Computer vision</span><span class="tag">Image processing</span><span class="tag">Neural networks</span><span class="tag">Mathematical modelling</span><span class="tag">R&D</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT: UPDATE LINKS HERE -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <p class="eyebrow">06 / Contact</p>
+          <h2>Have a meaningful problem?<br><span class="gradient">Let's build something.</span></h2>
+          <p>
+            I'm interested in electronics and embedded engineering opportunities,
+            applied research collaborations, and ambitious deep-tech ideas.
+            If there's a problem worth solving, I'd like to hear about it.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="mailto:Abhishekdevarushi7@gmail.com">Email me ↗</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/abhishek-devarushi-a0959528a/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          </div>
+          <div class="contact-details">
+            <a href="mailto:Abhishekdevarushi7@gmail.com">Abhishekdevarushi7@gmail.com</a>
+            <a href="tel:+917204152182">+91 7204152182</a>
+            <span>Belagavi, Karnataka, India</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Abhishek Devarushi</span>
+      <span>Designed with curiosity. Built for the real world.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.textContent = isOpen ? "✕ Close" : "☰ Menu";
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰ Menu";
+      });
+    });
+
+    // Automatically display the current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Subtle scroll reveal; content still appears if animations are disabled
+    const revealItems = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add("visible"));
+    }
+  </script>
+</body>
+</html>
